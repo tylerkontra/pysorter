@@ -64,7 +64,13 @@ FILES_WITHOUT_EXTENSION = (r'(^|/)(?P<name>[^/]+)$', 'other/')
 def impossible(match, path):
     raise RuntimeError("This pattern should never match a path: {}".format(path)) # pragma: no cover
 
+# need method to get filepath
+filetypeFile = 'filetypes.yaml'
+RULES = filetypesParser(filetypeFilepath)
 
+"""
+        Build filetypesParser that returns RULES with given schema:
+            i.e. [(regex, dirpath), ...]
 RULES = [
     (r'\.(?i)a2w$', 'alice_projects/'),
     (r'\.(?i)gz$', 'archives/'),
@@ -189,6 +195,7 @@ RULES = [
     (r'\.(?i)vcf$', 'contacts/'),
     (r'\.(?i)cer$', 'certificates/'),
 ]
+"""
 
 RULES.extend(MIMETYPE_FALLBACKS)
 

@@ -6,6 +6,12 @@
 *.pyc
 *.egg
 
+pysorter/bin*
+pysorter/include*
+pysorter/lib*
+
+pysorter/pip*
+
 # Setuptools distribution folder.
 /dist/
 
@@ -19,3 +25,8 @@
 /coverage_report/
 
 /tmp/
+
+# pycharm
+*.idea
+
+
