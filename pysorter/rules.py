@@ -5,6 +5,7 @@ from __future__ import print_function
 
 import logging
 import re
+from .filetypes_parser import parse_filetypes_yaml
 
 log = logging.getLogger(__name__)
 
@@ -67,8 +68,16 @@ class RulesFileClassifier(object):
             namespace = __import__(path)
         except ImportError:
             namespace = {'__builtins__': __builtins__}
+            # this is where the text file is read in! change it to parsing a yaml file
+            # to be replaced
             with open(path, 'r') as f:
-                exec (f.read(), namespace)
+                exec(f.read(), namespace)
+            """ TODO:
+                namespace = parse_filetypes_yaml(f)
+            
+                :namespace: is a singular dict, { 'RULES': [(re, dest) tuples...] }
+                to pass the namespace test below
+            """
 
         if 'RULES' not in namespace:
             msg = "Configuration file missing RULES: {}".format(path)
