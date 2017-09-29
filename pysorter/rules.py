@@ -57,19 +57,22 @@ class RulesFileClassifier(object):
         raise Unhandled
 
     @classmethod
-    def load_file(cls):
+    def load_file(cls, path):
         """
         Load sorting rules from a text file (or module) and return 
         a RulesFileClassifier containing all the sorting entries.
         """
         # try loading as a module 
-        filetypesPyPath = 'filetypes.py'
         try:
-            namespace = __import__(filetypesPyPath)
+            namespace = __import__(path)
         except ImportError:
             namespace = {'__builtins__': __builtins__}
-            with open(filetypesPyPath, 'r') as f:
+            with open(path, 'r') as f:
                 exec (f.read(), namespace)
+
+        if 'RULES' not in namespace:
+            msg = "Configuration file missing RULES: {}".format(path)
+            raise RuntimeError(msg)
 
         rules = []
         for regex, destination in namespace['RULES']:
