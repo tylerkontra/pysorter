@@ -1,0 +1,46 @@
+---
+config:
+  # mimetypes etc added in rules.py
+  # TODO: clarify necessity of config header
+  version: v0.1
+
+rules:
+  prefix: 'organized/'
+  archives:
+    gpri: 0
+    dst: 'archives/'
+    patterns:
+      - ['\.(?i)gz$', '\.(?i)ace$', '\.(?i)ace$', '\.(?i)zip$', '\.(?i)tar$', '\.(?i)rar$', '\.(?i)7z$', '\.(?i)bz2$']
+      - pat: '\.(?i)cab$'
+        dst: 'cab/'
+      - pat: '\.(?i)jar$'
+        dst: 'jar/'
+      - pat: '\.(?i)iso$'
+        dst: 'iso/'
+    skips:
+      - '\.arj$'
+      - '\.sz$'
+  projects:
+    gpri: 0
+    dst: 'projects/'
+    patterns:
+      - - '\.(?i)aup$'
+        - 'audacity_projects/'
+      - - '\.(?i)bwg$'
+        - 'brain_wave_generator_projects/'
+      - - '\.(?i)sbk$'
+        - 'scrapbook_factory/'
+      - - '\.(?i)cdr$'
+        - 'corel/'
+    skips: ['\.idea$','\.git*']
+  contacts:
+    patterns:
+      - - pat: '\.(?i)vcf$'
+        - dst: 'contacts/'
+  certs:
+    - '\.(?i)cer$'
+    - 'certificates/'
+  skips:
+    - ['\.yaml$', '\.idea$', '\.pyc$', '\.mid[i|di]$']
+
+
