@@ -35,12 +35,11 @@ rules:
     skips: ['\.idea$','\.git*']
   contacts:
     patterns:
-      - - pat: '\.(?i)vcf$'
-        - dst: 'contacts/'
+      - pat: '\.(?i)vcf$'
+        dst: 'contacts/'
   certs:
-    - '\.(?i)cer$'
-    - 'certificates/'
-  skips:
-    - ['\.yaml$', '\.idea$', '\.pyc$', '\.mid[i|di]$']
+    pat: '\.(?i)cer$'
+    dst: 'certificates/'
+  skips: ['\.yaml$', '\.idea$', '\.pyc$', '\.mid[i|di]$']
 
 
